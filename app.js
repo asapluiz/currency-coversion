@@ -15,15 +15,15 @@ app.use(express.static("Public"));
 
 
 app.get("/", function(req, res){
-    
+
     const url = "https://v6.exchangerate-api.com/v6/71f59e5798d4132189b87f3c/latest/" + "USD"
     axios.get(url)
     .then(response => {
-    
+
         const datas = response.data.conversion_rates
         //console.log(datas)
         res.render("home", {datas:datas})
-        
+
     })
     .catch(error => {
     console.log(error);
@@ -36,7 +36,12 @@ app.post("/", function(req, res){
 })
 
 
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
 
-app.listen(3000, function(){
+
+app.listen(port, function(){
     console.log("listening at 3000");
 });
