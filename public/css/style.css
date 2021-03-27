@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+}
+
+body{ 
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+
+}
+
+
+#display{  
+    display: inline-block;
+    float: right;
+    margin: auto; 
+}
+
+
+.inc{
+    border: none;
+    outline: none;
+    text-align: right;
+    float: right; 
+}
+
+.inc :active{
+    border: none;
+}
+
+.vertical-spacing{
+    margin: 30px;
+}
+
+.swap-button {
+    background-color: green;
+    color: white;
+    padding: 3px 10px;
+}
+
+.currency-pick{
+    width: 70px;
+    padding: 3px 5px;
+    border: 1px solid #dfe0df;
+    border-radius: 3px;
+    
+}
+.green{
+    color: green;
+}
+.img {
+    text-align: center;
+    margin: auto;
+}
