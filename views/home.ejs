@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>currency converter</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="public/css/style.css">
 </head>
 <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -16,32 +16,32 @@
             width="100px"
             height="100px" />
         </div>
-        
+
         <div>
             <h1 class="green">Exchange Rate Calculator</h1>
         </div>
-        
+
         <p>Choose The currency and the amount to get the exchange rate</p>
         <div class="vertical-spacing">
-            
+
             <select name="selectBase" class="currency-pick" id="currency1" onchange="postBase()">
                 <% for (var key in datas){%>
-                    <option class="pick-option" val="12"><%=key%> </option> 
-                
+                    <option class="pick-option" val="12"><%=key%> </option>
+
                 <%}%>
             </select>
-        
+
 
           <input type="number" value=1 class="inc" id="value1" min="1">
 
-          
+
         </div>
         <div class="vertical-spacing ">
             <button class="swap-button" id="btn">Swap</button>
             <p id="display" class="green ">cost = value</p>
         </div>
-        
-        
+
+
 
         <div class="vertical-spacing">
             <select class="currency-pick" id="currency2" >
@@ -59,14 +59,14 @@
         let value1 = document.getElementById("value1");
         let btn = document.getElementById("btn")
         let display = document.getElementById("display");
-        
+
         let currency_obj = <%- JSON.stringify(datas) %>
         let firstVal = getCurrencyValue(`${currency1.value}`, currency_obj);
         let secondVal = getCurrencyValue(`${currency2.value}`, currency_obj);
-        
+
         display.innerHTML = `1 ${currency1.value} = ${(secondVal/firstVal).toFixed(10)} ${currency2.value}`;
         value2.value = ((secondVal/firstVal)*value1.value).toFixed(10);
-        
+
 
 
         // output value of any given currency
@@ -76,7 +76,7 @@
                     return obj[key]
                 }
 
-            } 
+            }
         }
 
         function postBase(){
@@ -84,15 +84,15 @@
             $.post('/', { myData: ` ${baseValue}` }, function() {
                 //console.log("posted successfully")
         })
-            
+
         }
-        
-       
-     
+
+
+
         value1.addEventListener("change", function(){
             let secondVal = getCurrencyValue(`${currency2.value}`, currency_obj)
             let firstVal = getCurrencyValue(`${currency1.value}`, currency_obj)
-            
+
             value2.value =  ((secondVal/firstVal)* value1.value).toFixed(10);
         })
 
@@ -110,14 +110,14 @@
 
             display.innerHTML = `1 ${currency1.value} = ${(secondVal/firstVal).toFixed(10)} ${currency2.value}`
             value2.value = ((secondVal/firstVal)*value1.value).toFixed(10);
-           
+
         })
-        
-        
-        
-        
+
+
+
+
     </script>
 
-        
+
 </body>
 </html>
